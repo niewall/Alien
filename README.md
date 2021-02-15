@@ -1,6 +1,4 @@
-# Alien
-<<<<<<< HEAD
+Alien
+
 Infokurs Projekt
-=======
-Infokurs Projekt
->>>>>>> ausgleich
+
