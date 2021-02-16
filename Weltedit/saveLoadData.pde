@@ -56,6 +56,52 @@ void buttonClear(){
   text("clear", 1860, 200);
 }
 
+void displayStats(){
+  fill(255);
+  text(screenNum, 1860, 275);
+  
+  text("blo:", 1860, 350);
+  text(currentBlock, 1860, 380);
+  
+  if(currentBlock < blockAmount){
+    image(blockIm[currentBlock],1862,420);
+  }
+}
+
+void keyPressed() {
+  if (key == 'w' || key == 'W') {
+    if(screenNum <15 && screenNum % 2 == 0){
+      screenNum++;
+    }
+  } else 
+  if (key == 's' || key == 'S'){
+    if(screenNum >0 && screenNum % 2 == 1){
+      screenNum--;
+    }
+  }else 
+  if (key == 'd' || key == 'D'){
+    if(screenNum <14){
+      screenNum = screenNum +2;
+    }
+  }else 
+  if (key == 'a' || key == 'A'){
+    if(screenNum > 1){
+      screenNum = screenNum -2;
+    }
+  }else 
+  if(keyCode == UP){
+    if(currentBlock < 255){
+      currentBlock++;
+    }
+  }else 
+  if(keyCode == DOWN){
+    if(currentBlock > 0){
+      currentBlock--;
+    }
+  }
+    
+}
+
 void saveMap(){
   
   String name = showInputDialog("Name der Welt:");
