@@ -12,7 +12,7 @@ void loadImages(){
   blockIm[4] = loadImage("stone.png");
   blockIm[5] = loadImage("sand.png");
   blockIm[6] = loadImage("fels.png");
-  blockIm[7] = loadImage("coin.png");
+  blockIm[7] = loadImage("man.png");
   blockIm[8] = loadImage("forest.png");
 }
 
