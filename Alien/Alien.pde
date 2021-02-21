@@ -3,6 +3,8 @@ long delta = 0;
 Blocks[] block;
 Player blob;
 
+int screen = 0;
+
 int playerOffsetY = 1020;
 int positionX = 0;
 int positionY = 0;
@@ -22,8 +24,14 @@ void draw(){
   //print(millis()-lastTime);
   lastTime = millis();
   isKeyPressed();
-  run(); 
   
+  if(screen == 0){
+   menu(); 
+  }
+  
+  if(screen == 1){
+  run(); 
+  }
        
 }
 

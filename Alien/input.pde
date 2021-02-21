@@ -5,7 +5,7 @@ void isKeyPressed() {
       blob.move('j');
     }
     if (moveKeys[2]){
-      //blob.move('j');
+      screen = 1;
     }
     if (moveKeys[3]){
       blob.move('r');
@@ -13,9 +13,8 @@ void isKeyPressed() {
     if ((moveKeys[1])){
       blob.move('l');
     }
-    if (1 == 2){
-      saveFrame(); 
-    }
+
+
 }
 
 boolean[] moveKeys = new boolean[4];
