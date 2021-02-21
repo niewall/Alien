@@ -3,6 +3,7 @@ long delta = 0;
 Blocks[] block;
 Player blob;
 
+int playerOffsetY = 1020;
 int positionX = 0;
 int positionY = 0;
 
@@ -31,7 +32,7 @@ void run(){
   background(98,198,223);
   pushMatrix();
   
-  translate(0-positionX, -1020-positionY);
+  translate(0-positionX, -playerOffsetY-positionY);
   
   for(int i = (int(positionX/60))*34; i< ((positionX/60) + 33)*34;i++){  
     // Weniger Auslastung, wenn man nur den Bereich Rendert,

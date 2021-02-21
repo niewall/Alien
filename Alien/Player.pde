@@ -6,11 +6,13 @@ class Player{
   float gravity = 0.1;
   boolean jump = true;
   PVector pos, veloc;
-  int collitionStatus = 0;
+  int collitionStatusY = 0;
+  int collitionStatusX = 0;
   boolean onGround = false;
+  int stopMovement = 0;
   
   int playerPosRealX = width/2;
-  int playerPosRealY = height/2 +1020;
+  int playerPosRealY = height/2 +510;
   
   Player(){
     pos = new PVector(0,0);
@@ -20,7 +22,7 @@ class Player{
   
   void display(){
     update();
-    image(player[orientation],playerPosRealX+ pos.x, height/2 +1020 + pos.y);
+    image(player[orientation],playerPosRealX+ pos.x, height/2 +playerOffsetY + pos.y);
     
   }
   
@@ -33,15 +35,26 @@ class Player{
     positionY = int(pos.y);
       
       
-    collitionStatus = collition();
+    collitionStatusY = collisionY();
+    collitionStatusX = collisionX();
     onGround = false;
-    if(collitionStatus == 1){
+    stopMovement = 0;
+    if(collitionStatusY == 1){
         veloc.y = 0;
         onGround = true;
-    }else if(collitionStatus == 2){
+    }else if(collitionStatusY == 2){
         veloc.y = 2;
     }else{
+      stopMovement = 0;
       veloc.y += gravity;
+    }
+    
+    if(collitionStatusX == 3){
+        veloc.x = 0;
+        stopMovement = 1;
+    }else if(collitionStatusX == 4){
+        veloc.x = 0;
+        stopMovement = 2;
     }
     
     veloc.x = veloc.x*0.92;
@@ -50,24 +63,44 @@ class Player{
   
   void move(char pDirection){
     if(pDirection == 'l'){
-      if(pos.x > 5){
+      if(pos.x > 5 && stopMovement != 1){
       veloc.x = -2;
       }else{
         
       }
     }
-    if(pDirection == 'r'){
+    if(pDirection == 'r' && stopMovement != 2){
       veloc.x = +2;}
     if(pDirection == 'j' && onGround == true){
       veloc.y = -6;}
     
   }
   
-  int collition(){
+  int collisionY(){
     int result = 0;
-    for(int i = ((int((pos.x+plWidth/2)/60))+16)*34; i< (((pos.x+plWidth/2)/60) + 17)*34;i++){  
+    for(int i = ((int((pos.x+plWidth/2)/60))+16)*34; i< (((pos.x+plWidth/2)/60) + 17)*34;i++){  //Fuer drunter oder drueber:
       
-     result = block[i].doesCollide(pos.x,pos.x+plWidth, pos.y+1020+510, pos.y+plHeight+1020+510);
+     result = block[i].doesCollide(pos.x,pos.x+plWidth, pos.y+playerOffsetY+510, pos.y+plHeight+playerOffsetY+510);
+     if(result >0){
+       return result;
+    }}
+ 
+    return 0;
+  }
+
+  int collisionX(){
+    int result = 0;
+
+    for(int i = ((int((pos.x+plWidth/2)/60))+15)*34; i< (((pos.x+plWidth/2)/60) + 16)*34;i++){ //Fuer daneben rechts
+      
+     result = block[i].doesTouch('l',pos.x+playerPosRealX,pos.x+playerPosRealX+plWidth, pos.y+playerOffsetY+510, pos.y+plHeight+playerOffsetY+510);
+     if(result >0){
+       return result;
+    }}
+    
+    for(int i = ((int((pos.x+plWidth/2)/60))+17)*34; i< (((pos.x+plWidth/2)/60) + 18)*34;i++){ //Fuer daneben links
+      
+     result = block[i].doesTouch('r',pos.x+playerPosRealX,pos.x+playerPosRealX+plWidth, pos.y+playerOffsetY+510, pos.y+plHeight+playerOffsetY+510);
      if(result >0){
        return result;
     }}
