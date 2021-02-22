@@ -23,7 +23,7 @@ void loadImages(){
 }
 
 void createBlocks(String world){
-    byte blockBytes[] = loadBytes("\\welten\\" + world+".dat"); 
+    byte blockBytes[] = loadBytes("level3.dat"); 
     int counter = 0;
     for(int i = 0; i < 256; i++){
       for(int ii = 0; ii < 34; ii++){

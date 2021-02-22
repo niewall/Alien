@@ -5,13 +5,17 @@ Player blob;
 
 int screen = 0;
 
-int playerOffsetY = 1020;
+static final String RENDER = FX2D; //P3D oder JAVA2D FX2D
+
+int playerOffsetY;
 int positionX = 0;
 int positionY = 0;
 
 void setup(){
-  size(1920,1020);
-  frameRate(120);
+  size(1920,1020,RENDER);
+  frameRate(90);
+  surface.setResizable(true);
+  playerOffsetY = height-100;
   loadImages();
   block = new Blocks[8704];
   blob = new Player();
@@ -23,6 +27,7 @@ void setup(){
 void draw(){
   //print(millis()-lastTime);
   lastTime = millis();
+  //println(frameRate);
   isKeyPressed();
   
   if(screen == 0){
@@ -36,10 +41,8 @@ void draw(){
 }
 
 void run(){
-  println(delta);
   background(98,198,223);
-  pushMatrix();
-  
+  pushMatrix();  
   translate(0-positionX, -playerOffsetY-positionY);
   
   for(int i = (int(positionX/60))*34; i< ((positionX/60) + 33)*34;i++){  

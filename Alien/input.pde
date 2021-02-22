@@ -6,6 +6,7 @@ void isKeyPressed() {
     }
     if (moveKeys[2]){
       screen = 1;
+      //surface.setSize(100,1020);
     }
     if (moveKeys[3]){
       blob.move('r');
@@ -21,7 +22,23 @@ boolean[] moveKeys = new boolean[4];
 
 
 void setMovement(int k, boolean b) {
+  if(RENDER.equals(FX2D)){
   switch (k) {
+  case 'W':
+    moveKeys[0] = b;
+    break;
+  case 'A':
+    moveKeys[1] = b;
+    break;
+  case 'S':
+    moveKeys[2] = b;
+    break;
+  case 'D':
+    moveKeys[3] = b;
+    break;
+  }
+}else{
+    switch (k) {
   case 'w':
     moveKeys[0] = b;
     break;
@@ -35,6 +52,9 @@ void setMovement(int k, boolean b) {
     moveKeys[3] = b;
     break;
   }
+  
+  
+}
 }
 
 void keyPressed() {
