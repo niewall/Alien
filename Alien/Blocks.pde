@@ -10,8 +10,6 @@ class Blocks{
    x = pX*bSize;
    y = pY*bSize;
    
-   
-   
   }
   
   void display(){
@@ -27,11 +25,12 @@ class Blocks{
         //print("HEEE");
         return 2;
       }
-      if(y <= pY2 && y >= pY1-50){
+      if(y <= pY2 && y >= pY1){
+        //print("XBlock:" + (x) + " - " + "YBlock:" + (y) + "  ||  ");
         return 1;
       }
     }
-    return 0;
+    return 0;  
   }
   
   int doesTouch(char pSide, float pX1,float pX2, float pY1, float pY2){
@@ -39,7 +38,7 @@ class Blocks{
      if(pSide == 'l'){
       if(y <= pY2-10 && y >= pY1 && pX1 <= x+bSize){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        //print("HITLinks");
+        print("HITLinks");
        return 3; 
         
       }
@@ -47,7 +46,7 @@ class Blocks{
      if(pSide == 'r'){
       if(y <= pY2-10 && y >= pY1 && pX1+60 >= x){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        //print("HITRechts");
+        print("HITRechts");
        return 4; 
         
       }
@@ -59,8 +58,6 @@ class Blocks{
     
   }
   
-  int getY(){
-    return y;
-  }
+
  
 }

@@ -11,87 +11,60 @@ class Player{
   boolean onGround = false;
   int stopMovement = 0;
   
-  int playerPosRealX = width/2;
-  int playerPosRealY = height/2 +510;
-  
-  int playerPosRealXRef = playerPosRealX;
-  int playerPosRealYRef = playerPosRealY;
-  
-  int verschiebungX = 0;
-  int verschiebungY = 0;
+  float[] posOnMap = {1000,1200};
+  float[] refposOnMap = {1000,1200};
   
   Player(){
-    pos = new PVector(0,0);
     veloc = new PVector(0,0);
     
   }
   
   void display(){
     update();
-    image(player[orientation],playerPosRealX+ pos.x, playerPosRealY +playerOffsetY -510 + pos.y);
+    image(player[orientation],posOnMap[0], posOnMap[1]);
     
   }
   
   void update(){
-    if(playerPosRealX < playerPosRealXRef){
-    verschiebungX = playerPosRealX - playerPosRealXRef;
-    }
-    if(playerPosRealY > playerPosRealYRef){
-    verschiebungY = playerPosRealY - playerPosRealYRef;
-
-    }
+    if(posOnMap[0] > width/2+100){  //Check for BorderLeft
+    verschiebungMapX = refposOnMap[0]-posOnMap[0];}
+    if(posOnMap[1] < height*1.45){  // Check for BorderBottom
+    verschiebungMapY = refposOnMap[1]-posOnMap[1];}
     
-    if(pos.x > 0 || playerPosRealX > width/2){
-      pos.x += veloc.x;
-      playerPosRealX = width/2;
-    }else{
-      playerPosRealX += veloc.x;
-      pos.x = 0;
-    }
-    
-    if(pos.y < 100 || playerPosRealY < height/2 +510){
-      pos.y += veloc.y;
-      playerPosRealY = height/2 +510;
-    }else{
-      playerPosRealY += veloc.y;
-      pos.y = 100;
-    }
- 
-    
-    positionX = int(pos.x);
-    positionY = int(pos.y);
-      
+    posOnMap[0] += veloc.x;
+    posOnMap[1] += veloc.y;
       
     collitionStatusY = collisionY();
     collitionStatusX = collisionX();
     onGround = false;
     stopMovement = 0;
     
-    if(collitionStatusY == 1){
+    //Y-Direction
+    if(collitionStatusY == 1 || posOnMap[1] > height*2){  //Hit Ground
         veloc.y = 0;
         onGround = true;
-    }else if(collitionStatusY == 2){
+    }else if(collitionStatusY == 2){ //Hit Celling
         veloc.y = 2;
     }else{
       stopMovement = 0;
       veloc.y += gravity;
     }
     
-    if(collitionStatusX == 3){
+    if(collitionStatusX == 3){  //Hit Left
         veloc.x = 0;
         stopMovement = 1;
-    }else if(collitionStatusX == 4){
+    }else if(collitionStatusX == 4){ //Hit Right
         veloc.x = 0;
         stopMovement = 2;
     }
     
     veloc.x = veloc.x*0.92;
-    print("X:" + (pos.x) + " - " + "Y:" + (pos.y));
-    println("||  verX:" + (verschiebungX) + " - " + "verY:" + (verschiebungY));
+    println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
+    //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
   }
   
   void move(char pDirection){
-    if(pDirection == 'l'){
+    if(pDirection == 'l' && posOnMap[0] > 30){
       if(stopMovement != 1){
       veloc.x = -4;
       }else{
@@ -107,9 +80,9 @@ class Player{
   
   int collisionY(){
     int result = 0;
-    for(int i = ((int((pos.x+plWidth/2)/60))+(playerPosRealX/((playerPosRealXRef)/16)))*34; i< (((pos.x+plWidth/2)/60) + (playerPosRealX/((playerPosRealXRef)/17)))*34;i++){  //Fuer drunter oder drueber:
+    for(int i = (int(posOnMap[0]+plWidth/2)/60)*34; i< (int(posOnMap[0]+plWidth*1.5)/60)*34;i++){  //Fuer drunter oder drueber:
       
-     result = block[i].doesCollide(pos.x+playerPosRealX,pos.x+plWidth+playerPosRealX, pos.y+playerOffsetY+height/2+verschiebungY+5, pos.y+plHeight+playerOffsetY+height/2+ verschiebungY+5);
+     result = block[i].doesCollide(posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
@@ -120,16 +93,16 @@ class Player{
   int collisionX(){
     int result = 0;
 
-    for(int i = ((int((pos.x+verschiebungX+plWidth/2)/60))+15)*34; i< (((pos.x+verschiebungX+plWidth/2)/60) + 16)*34;i++){ //Fuer daneben rechts
+    for(int i = (int(posOnMap[0]+plWidth*1.5)/60)*34; i< (int(posOnMap[0]+plWidth*2.5)/60)*34;i++){ //Fuer daneben rechts
       
-     result = block[i].doesTouch('l',pos.x+playerPosRealX,pos.x+playerPosRealX+plWidth, pos.y+playerOffsetY+height/2+verschiebungY, pos.y+plHeight+playerOffsetY+height/2+verschiebungY);
+     result = block[i].doesTouch('r',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
     
-    for(int i = ((int((pos.x+verschiebungX+plWidth/2)/60))+17)*34; i< (((pos.x+verschiebungX+plWidth/2)/60) + 18)*34;i++){ //Fuer daneben links
+    for(int i = (int(posOnMap[0]-plWidth/2)/60)*34; i< (int(posOnMap[0]+plWidth/2)/60)*34;i++){ //Fuer daneben links
       
-     result = block[i].doesTouch('r',pos.x+playerPosRealX,pos.x+playerPosRealX+plWidth, pos.y+playerOffsetY+height/2+verschiebungY, pos.y+plHeight+playerOffsetY+height/2+verschiebungY);
+     result = block[i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
@@ -138,12 +111,16 @@ class Player{
 
   float getX(){
     
-   return pos.x+playerPosRealX; 
+   return posOnMap[0]; 
   }
   
   float getY(){
     
-    return pos.y + playerPosRealY;
+    return posOnMap[1];
+  }
+  
+  void setY(int pY){
+    
   }
 
 }
