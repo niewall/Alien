@@ -1,35 +1,39 @@
-PImage[] blockIm = new PImage[255];
 PImage[] player = new PImage[2];
 PImage background;
 
-void loadImages(){
+
+void loadRest(){
   //background = loadImage("MAPS.png");
   //background.resize(15360, 0);
-  blockIm[0] = loadImage("blank.png");
-  blockIm[1] = loadImage("skyBlock.png");
-  blockIm[2] = loadImage("dirt.png");
-  blockIm[3] = loadImage("grass.png");
-  blockIm[4] = loadImage("stone.png");
-  blockIm[5] = loadImage("sand.png");
-  blockIm[6] = loadImage("fels.png");
-  blockIm[7] = loadImage("coin.png");
-  blockIm[8] = loadImage("forest.png");
-  
   player[0] = loadImage("man.png");
   player[1] = loadImage("blobRight.png");
-
-  
   
 }
 
 void createBlocks(String world){
-    byte blockBytes[] = loadBytes("level3.dat"); 
+    byte blockBytes[] = loadBytes("level3New.dat"); 
+    int blockNr;
+    byte data[] = {0,0};
     int counter = 0;
     for(int i = 0; i < 256; i++){
-      for(int ii = 0; ii < 34; ii++){
-        block[counter] = new Blocks(blockBytes[counter],i,ii);
-        counter++;
-      }
+      for(int ii = 0; ii < 68; ii++){
+        data[0] = blockBytes[counter];
+        data[1] = blockBytes[counter+1];
+        blockNr = bytesToInt(data);
+        block[counter/2] = new Blocks(i,ii/2,blockNr,getBlockSolid(blockNr));  //The Block gets the position and value for solid
+        counter = counter +2;
+        ii++;
+        println(counter);
+    }
     }
     
+}
+
+int bytesToInt(byte[] pData){
+  int blNr = 0;
+  String st1 = Integer.toString(int(pData[0]), 2);
+  String st2 = Integer.toString(int(pData[1]), 2);
+  blNr = Integer.parseInt(st2+st1,2);
+  
+  return blNr;
 }

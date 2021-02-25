@@ -1,12 +1,14 @@
 class Blocks{
   
   int bSize = 60;
-  int kind;
+  boolean solid;
+  int blockNr;
   int x;
   int y;
   
-  Blocks(int bKind,int pX, int pY){
-   kind = bKind;
+  Blocks(int pX, int pY,int pBlockNr,boolean pSolid){
+   solid = pSolid;
+   blockNr = pBlockNr;
    x = pX*bSize;
    y = pY*bSize;
    
@@ -14,12 +16,12 @@ class Blocks{
   
   void display(){
     
-    image(blockIm[kind],x,y);
+    image(blockIm[blockNr],x,y);
   
   }
   
   int doesCollide(float pX1,float pX2, float pY1, float pY2){
-    if(kind > 1){
+    if(solid){
       //print("Y:" + y + " - " + "pY2:" +pY2 + " || ");
       if(y+bSize >= pY1 && y < pY1){
         //print("HEEE");
@@ -34,7 +36,7 @@ class Blocks{
   }
   
   int doesTouch(char pSide, float pX1,float pX2, float pY1, float pY2){
-   if(kind > 1){
+   if(solid){
      if(pSide == 'l'){
       if(y <= pY2-10 && y >= pY1 && pX1 <= x+bSize){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
