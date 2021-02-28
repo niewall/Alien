@@ -12,7 +12,7 @@ float verschiebungMapX = 0;
 float verschiebungMapY = 0;
 
 void setup(){
-  size(1920,1020,RENDER);
+  size(1280,720,RENDER);
   frameRate(90);
   surface.setResizable(true);
   playerOffsetY = height/2+200;

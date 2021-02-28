@@ -11,8 +11,8 @@ class Player{
   boolean onGround = false;
   int stopMovement = 0;
   
-  float[] posOnMap = {1000,1000};
-  float[] refposOnMap = {1000,1000};
+  float[] posOnMap = {width/2,height*1.2};
+  float[] refposOnMap = {width/2,height*1.2};
   
   Player(){
     veloc = new PVector(0,0);
@@ -28,7 +28,7 @@ class Player{
   void update(){
     if(posOnMap[0] > width/2+100){  //Check for BorderLeft
     verschiebungMapX = refposOnMap[0]-posOnMap[0];}
-    if(posOnMap[1] < height*1.3){  // Check for BorderBottom
+    if(posOnMap[1] < 1500){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
     
     posOnMap[0] += veloc.x;
@@ -40,7 +40,7 @@ class Player{
     stopMovement = 0;
     
     //Y-Direction
-    if(collitionStatusY == 1 || posOnMap[1] > height*2){  //Hit Ground
+    if(collitionStatusY == 1){  //Hit Ground
         veloc.y = 0;
         onGround = true;
     }else if(collitionStatusY == 2){ //Hit Celling
