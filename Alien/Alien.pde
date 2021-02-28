@@ -19,7 +19,6 @@ void setup(){
   loadImages();
   block = new Blocks[8704];
   blob = new Player();
-  createBlocks("level3");
 }
 
 
@@ -35,6 +34,11 @@ void draw(){
   }
   
   if(screen == 1){
+  levelMenu();
+  }
+  
+  
+  if(screen == 2){
   run(); 
   }
        
@@ -42,6 +46,7 @@ void draw(){
 
 void run(){
   background(98,198,223);
+  displayBackground();
   pushMatrix();  
   translate(verschiebungMapX, verschiebungMapY-playerOffsetY);
   print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
@@ -58,6 +63,12 @@ void run(){
   blob.display();
   
   popMatrix();
+}
+
+void displayBackground(){
+  
+  image(background,verschiebungMapX/10-50,verschiebungMapY/20-150);
+  
 }
 
 void test(){

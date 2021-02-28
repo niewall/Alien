@@ -11,8 +11,8 @@ class Player{
   boolean onGround = false;
   int stopMovement = 0;
   
-  float[] posOnMap = {1000,1200};
-  float[] refposOnMap = {1000,1200};
+  float[] posOnMap = {1000,1000};
+  float[] refposOnMap = {1000,1000};
   
   Player(){
     veloc = new PVector(0,0);
@@ -28,7 +28,7 @@ class Player{
   void update(){
     if(posOnMap[0] > width/2+100){  //Check for BorderLeft
     verschiebungMapX = refposOnMap[0]-posOnMap[0];}
-    if(posOnMap[1] < height*1.45){  // Check for BorderBottom
+    if(posOnMap[1] < height*1.3){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
     
     posOnMap[0] += veloc.x;

@@ -3,7 +3,7 @@ PImage background;
 
 
 void loadRest(){
-  //background = loadImage("MAPS.png");
+  background = loadImage("background.png");
   //background.resize(15360, 0);
   player[0] = loadImage("man.png");
   player[1] = loadImage("blobRight.png");
@@ -11,7 +11,7 @@ void loadRest(){
 }
 
 void createBlocks(String world){
-    byte blockBytes[] = loadBytes("level3New.dat"); 
+    byte blockBytes[] = loadBytes(world+".dat"); 
     int blockNr;
     byte data[] = {0,0};
     int counter = 0;
