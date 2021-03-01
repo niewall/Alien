@@ -10,6 +10,7 @@ class Player{
   int collitionStatusX = 0;
   boolean onGround = false;
   int stopMovement = 0;
+  int score = 0;
   
   float[] posOnMap = {width/2,height*1.2};
   float[] refposOnMap = {width/2,height*1.2};
@@ -22,6 +23,8 @@ class Player{
   void display(){
     update();
     image(player[orientation],posOnMap[0], posOnMap[1]);
+    fill(255);
+    text(score,-verschiebungMapX+50,-verschiebungMapY + 650);
     
   }
   
@@ -122,5 +125,12 @@ class Player{
   void setY(int pY){
     
   }
-
+  
+  void addToScore(int pAdd){
+    score = score + pAdd;   
+  }
+  
+  void setGround(int pGroundY){
+    posOnMap[1] =pGroundY-plHeight;
+  }
 }

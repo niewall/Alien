@@ -51,6 +51,8 @@ void run(){
   translate(verschiebungMapX, verschiebungMapY-playerOffsetY);
   print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
 
+
+  blob.display();
   for(int i = (int(-verschiebungMapX/60))*34; i< ((-verschiebungMapX/60) + 33)*34;i++){  
     // Weniger Auslastung, wenn man nur den Bereich Rendert,
     // den man sieht. Z.B. nur Bereich von x1 zu x2. 
@@ -59,8 +61,6 @@ void run(){
   }
   
   //image(background,0,0);
-  
-  blob.display();
   
   popMatrix();
 }

@@ -1,0 +1,106 @@
+[
+  {
+    "id":0,
+    "image":"blank.png",
+    "solid": false,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":1,
+    "image":"coin.png",
+    "solid": false,
+    "collectable":true,
+    "collectID":"coin",
+    "damage":0
+  },
+  {
+    "id":2,
+    "image":"dirt.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":3,
+    "image":"grass.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":4,
+    "image":"stone.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":5,
+    "image":"sand.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":6,
+    "image":"fels.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":7,
+    "image":"forest.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":8,
+    "image":"forest.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":9,
+    "image":"blank.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":10,
+    "image":"blank.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":11,
+    "image":"blank.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":12,
+    "image":"blank.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+  {
+    "id":13,
+    "image":"blank.png",
+    "solid": true,
+    "collectable":false,
+    "damage":0
+  },
+
+
+
+
+
+]

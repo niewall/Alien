@@ -2,13 +2,20 @@ class Blocks{
   
   int bSize = 60;
   boolean solid;
+  boolean collectable;
+  boolean visible = true;
+  String collectID = "";
+  int damage = 0;
   int blockNr;
   int x;
   int y;
   
-  Blocks(int pX, int pY,int pBlockNr,boolean pSolid){
+  Blocks(int pX, int pY,int pBlockNr,boolean pSolid, boolean pCollectable,String pCollectID, int pDamage){
    solid = pSolid;
    blockNr = pBlockNr;
+   collectable = pCollectable;
+   collectID = pCollectID;
+   damage = pDamage;
    x = pX*bSize;
    y = pY*bSize;
    
@@ -16,8 +23,9 @@ class Blocks{
   
   void display(){
     
-    image(blockIm[blockNr],x,y);
-  
+    if(visible){
+      image(blockIm[blockNr],x,y);
+    }
   }
   
   int doesCollide(float pX1,float pX2, float pY1, float pY2){
@@ -29,7 +37,14 @@ class Blocks{
       }
       if(y <= pY2 && y >= pY1){
         //print("XBlock:" + (x) + " - " + "YBlock:" + (y) + "  ||  ");
+        blob.setGround(int(y+2));
         return 1;
+      }
+    }
+    if(collectable && visible){
+      if(y>pY1 && y < pY2){
+      visible = false;
+      blob.addToScore(5);
       }
     }
     return 0;  

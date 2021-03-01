@@ -1,5 +1,7 @@
 PImage[] player = new PImage[2];
 PImage background;
+JSONArray blockData;
+
 
 
 void loadRest(){
@@ -20,7 +22,17 @@ void createBlocks(String world){
         data[0] = blockBytes[counter];
         data[1] = blockBytes[counter+1];
         blockNr = bytesToInt(data);
-        block[counter/2] = new Blocks(i,ii/2,blockNr,getBlockSolid(blockNr));  //The Block gets the position and value for solid
+        
+        JSONObject blockDat = blockData.getJSONObject(blockNr);
+        boolean pSolid = blockDat.getBoolean("solid");
+        boolean pCollect = blockDat.getBoolean("collectable");
+        String pCollectID = "";
+        int pDamage = blockDat.getInt("damage");
+        if(pCollect){
+          pCollectID = blockDat.getString("collectID");
+        }
+        
+        block[counter/2] = new Blocks(i,ii/2,blockNr,pSolid,pCollect,pCollectID,pDamage);  //The Block gets the position and value for solid
         counter = counter +2;
         ii++;
         println(counter);
