@@ -1,6 +1,7 @@
 float lastTime = 0;
 float delta = 0;
 Blocks[] block;
+Enemy[] enemy;
 Player blob;
 
 int screen = 0;
@@ -12,12 +13,13 @@ float verschiebungMapX = 0;
 float verschiebungMapY = 0;
 
 void setup(){
-  size(1920,1020,RENDER);
+  size(1280,720,RENDER);
   frameRate(90);
   surface.setResizable(true);
   playerOffsetY = height/2+200;
   loadImages();
   block = new Blocks[8704];
+  enemy = new Enemy[50];
   blob = new Player();
 }
 
@@ -54,16 +56,17 @@ void run(){
   displayBackground();
   pushMatrix();  
   translate(verschiebungMapX, verschiebungMapY-playerOffsetY);
-  print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
+  //print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
 
 
-  blob.display();
+  enemy[0].display();
   for(int i = (int(-verschiebungMapX/60))*34; i< ((-verschiebungMapX/60) + 33)*34;i++){  
     // Weniger Auslastung, wenn man nur den Bereich Rendert,
     // den man sieht. Z.B. nur Bereich von x1 zu x2. 
     // Rechnung i = (verschiebungX/60) ; i Obergrenze = (verschiebungX/60)+33
    block[i].display();
   }
+  blob.display();
   
   //image(background,0,0);
   

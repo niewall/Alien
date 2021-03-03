@@ -8,6 +8,7 @@ class Player{
   float laufgeschw = 20;
   float laufboost = 10;
   float[] counterLaufen = {0,0};
+  int hitCooldown = 0;
   boolean jump = true;
   PVector pos, veloc;
   int collitionStatusY = 0;
@@ -28,7 +29,7 @@ class Player{
   void display(){
     update();
     
-    if(veloc.x > 0){orientation = 0;}else if(veloc.x < 0){orientation = 1;}
+    if(veloc.x > 0 && hitCooldown <= 0){orientation = 0;}else if(veloc.x < 0 && hitCooldown <= 0){orientation = 1;}
     image(player[orientation],posOnMap[0], posOnMap[1]);
     fill(255);
     
@@ -68,10 +69,12 @@ class Player{
     }
     
     veloc.x = veloc.x*0.92;
+    
+    if(hitCooldown>0){hitCooldown--;}
     //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
     //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
-    println(veloc.x);
-    println(counterLaufen[0]);
+    //println(veloc.x);
+    //println(counterLaufen[0]);
   }
   
   void move(char pDirection){
@@ -150,6 +153,25 @@ class Player{
   
   void setY(int pY){
     
+  }
+  
+  void getDamage(int pDamage){
+   health -= pDamage; 
+  }
+  
+  void attack(){
+   float pX = enemy[0].getX();
+   float pY = enemy[0].getY();
+   
+   if(veloc.x > 0){
+    orientation = 2;
+    hitCooldown = 25;
+    if(pX > posOnMap[0] &&  pX < posOnMap[0]+150 && pY > posOnMap[1] && pY < posOnMap[1]+plHeight){
+       enemy[0].getDamage(damage);
+    }
+     
+   }
+   
   }
   
   void setGround(int pGroundY){

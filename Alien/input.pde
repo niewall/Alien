@@ -14,11 +14,14 @@ void isKeyPressed() {
     if ((moveKeys[1])){
       blob.move('l');
     }
+    if ((moveKeys[4])){
+      blob.attack();
+    }
 
 
 }
 
-boolean[] moveKeys = new boolean[4];
+boolean[] moveKeys = new boolean[5];
 
 
 void setMovement(int k, boolean b) {
@@ -35,6 +38,9 @@ void setMovement(int k, boolean b) {
     break;
   case 'D':
     moveKeys[3] = b;
+    break;
+  case' ':
+    moveKeys[4] = b;
     break;
   }
 }else{

@@ -194,7 +194,7 @@ void loadMap(){
         blockNr = bytesToInt(data);
         block[i][ii/2] = blockNr;
         counter = counter +2;
-        i++;
+        ii++;
       }
     }
   }
