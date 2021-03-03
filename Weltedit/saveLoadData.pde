@@ -117,7 +117,7 @@ void saveMap(){
    
   for(int i = 0; i < 256; i++){
     for(int ii = 0; ii < 68; ii++){ //2*34
-      data = intToBytes(block[i][ii/2]);
+      data = intToBytes(block[i][ii/2]);  
       blockBytes[counter] = data[0];
       counter++;
       blockBytes[counter] = data[1];

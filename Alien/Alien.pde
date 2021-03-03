@@ -1,5 +1,5 @@
-long lastTime = 0;
-long delta = 0;
+float lastTime = 0;
+float delta = 0;
 Blocks[] block;
 Player blob;
 
@@ -12,7 +12,7 @@ float verschiebungMapX = 0;
 float verschiebungMapY = 0;
 
 void setup(){
-  size(1280,720,RENDER);
+  size(1920,1020,RENDER);
   frameRate(90);
   surface.setResizable(true);
   playerOffsetY = height/2+200;
@@ -25,8 +25,13 @@ void setup(){
 
 void draw(){
   //print(millis()-lastTime);
+  delta = (millis() - lastTime)/100;
   lastTime = millis();
-  //println(frameRate);
+  
+  if(delta > 0.13){
+   delta = 0.13; 
+  }
+  println(delta);
   isKeyPressed();
   
   if(screen == 0){
@@ -63,6 +68,8 @@ void run(){
   //image(background,0,0);
   
   popMatrix();
+  
+  hud();
 }
 
 void displayBackground(){

@@ -3,14 +3,19 @@ class Player{
   int plWidth = 60;
   int plHeight = 100;
   int orientation = 0;
-  float gravity = 0.15;
+  float gravity = 10;
+  float sprungkraft = 50;
+  float laufgeschw = 20;
+  float laufboost = 10;
+  float[] counterLaufen = {0,0};
   boolean jump = true;
   PVector pos, veloc;
   int collitionStatusY = 0;
   int collitionStatusX = 0;
   boolean onGround = false;
   int stopMovement = 0;
-  int score = 0;
+  int health = 100;
+  int damage = 30;
   
   float[] posOnMap = {width/2,height*1.2};
   float[] refposOnMap = {width/2,height*1.2};
@@ -22,9 +27,10 @@ class Player{
   
   void display(){
     update();
+    
+    if(veloc.x > 0){orientation = 0;}else if(veloc.x < 0){orientation = 1;}
     image(player[orientation],posOnMap[0], posOnMap[1]);
     fill(255);
-    text(score,-verschiebungMapX+50,-verschiebungMapY + 650);
     
   }
   
@@ -34,8 +40,8 @@ class Player{
     if(posOnMap[1] < 1500){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
     
-    posOnMap[0] += veloc.x;
-    posOnMap[1] += veloc.y;
+    posOnMap[0] += veloc.x *delta;
+    posOnMap[1] += veloc.y *delta;
       
     collitionStatusY = collisionY();
     collitionStatusX = collisionX();
@@ -50,7 +56,7 @@ class Player{
         veloc.y = 2;
     }else{
       stopMovement = 0;
-      veloc.y += gravity;
+      veloc.y += gravity*delta;
     }
     
     if(collitionStatusX == 3){  //Hit Left
@@ -62,22 +68,42 @@ class Player{
     }
     
     veloc.x = veloc.x*0.92;
-    println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
+    //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
     //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
+    println(veloc.x);
+    println(counterLaufen[0]);
   }
   
   void move(char pDirection){
-    if(pDirection == 'l' && posOnMap[0] > 30){
-      if(stopMovement != 1){
-      veloc.x = -4;
-      }else{
-        
+    if(pDirection == 'l' && posOnMap[0] > 30 && stopMovement != 1){
+      if(veloc.x >= -30 && veloc.x <= -0.01){
+        veloc.x = -laufgeschw - counterLaufen[0]/10;
+        counterLaufen[0] += 0.5+ counterLaufen[0]/100;
+      }else if(veloc.x > -0.01){
+        counterLaufen[0] = 0;
+        veloc.x = -laufgeschw;
+      }else if(veloc.x < -30){
+        veloc.x = -35;
+        counterLaufen[0] = 0;
       }
-    }
+    
+  }
     if(pDirection == 'r' && stopMovement != 2){
-      veloc.x = +4;}
+     if(veloc.x <= 30 && veloc.x >= 0.01){
+        veloc.x = laufgeschw + counterLaufen[1]/10;
+        counterLaufen[1] += 0.5+ counterLaufen[1]/100;
+      }else if(veloc.x < 0.01){
+        counterLaufen[1] = 0;
+        veloc.x = laufgeschw;
+      }else if(veloc.x > 30){
+        veloc.x = 35;
+        counterLaufen[1] = 0;
+      }
+    
+  }
+      
     if(pDirection == 'j' && onGround == true){
-      veloc.y = -7.5;}
+      veloc.y = -sprungkraft;}
     
   }
   
@@ -124,10 +150,6 @@ class Player{
   
   void setY(int pY){
     
-  }
-  
-  void addToScore(int pAdd){
-    score = score + pAdd;   
   }
   
   void setGround(int pGroundY){

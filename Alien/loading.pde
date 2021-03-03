@@ -8,7 +8,7 @@ void loadRest(){
   background = loadImage("background.png");
   //background.resize(15360, 0);
   player[0] = loadImage("man.png");
-  player[1] = loadImage("blobRight.png");
+  player[1] = loadImage("manl.png");
   
 }
 

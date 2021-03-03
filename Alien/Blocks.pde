@@ -44,7 +44,7 @@ class Blocks{
     if(collectable && visible){
       if(y>pY1 && y < pY2){
       visible = false;
-      blob.addToScore(5);
+      addToScore(5);
       }
     }
     return 0;  
@@ -55,7 +55,7 @@ class Blocks{
      if(pSide == 'l'){
       if(y <= pY2-10 && y >= pY1 && pX1 <= x+bSize){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        print("HITLinks");
+        //print("HITLinks");
        return 3; 
         
       }
@@ -63,7 +63,7 @@ class Blocks{
      if(pSide == 'r'){
       if(y <= pY2-10 && y >= pY1 && pX1+60 >= x){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        print("HITRechts");
+        //print("HITRechts");
        return 4; 
         
       }
