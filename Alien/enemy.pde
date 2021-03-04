@@ -55,7 +55,11 @@ class Enemy{
   }
   
   int collisionX(){
+    
     int result = 0;
+
+    if(x<10){return 3;}
+    
 
     for(int i = (int(x+eSize*1.5)/60)*34; i< (int(x+eSize*2.5)/60)*34;i++){ //Fuer daneben rechts
       

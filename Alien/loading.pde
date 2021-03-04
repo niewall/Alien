@@ -20,6 +20,7 @@ void createBlocks(String world){
     byte data[] = {0,0};
     int counter = 0;
     int counterEnemy = 0;
+    counterEnemys = -1;
     for(int i = 0; i < 256; i++){
       for(int ii = 0; ii < 68; ii++){
         data[0] = blockBytes[counter];
@@ -39,6 +40,7 @@ void createBlocks(String world){
           }
           block[counter/2] = new Blocks(i,ii/2,blockNr,pSolid,pCollect,pCollectID,pDamage);  //The Block gets the position and value for solid
         }else if(blockDat.getBoolean("enemy")== true){
+          counterEnemys++;
           String pImage = blockDat.getString("image");
           int pDamage = blockDat.getInt("damage");
           enemy[counterEnemy] = new Enemy(i,ii/2,pDamage,pImage);

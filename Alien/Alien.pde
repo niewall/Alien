@@ -2,7 +2,8 @@ float lastTime = 0;
 float delta = 0;
 Blocks[] block;
 Enemy[] enemy;
-Player blob;
+int counterEnemys = -1;
+ Player blob;
 
 int screen = 0;
 
@@ -58,8 +59,10 @@ void run(){
   translate(verschiebungMapX, verschiebungMapY-playerOffsetY);
   //print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
 
-
-  enemy[0].display();
+  for(int i=0;i<=counterEnemys;i++){
+    println(counterEnemys);
+    enemy[i].display();
+  }
   for(int i = (int(-verschiebungMapX/60))*34; i< ((-verschiebungMapX/60) + 33)*34;i++){  
     // Weniger Auslastung, wenn man nur den Bereich Rendert,
     // den man sieht. Z.B. nur Bereich von x1 zu x2. 

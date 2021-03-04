@@ -30,7 +30,12 @@ class Player{
     update();
     
     if(veloc.x > 0 && hitCooldown <= 0){orientation = 0;}else if(veloc.x < 0 && hitCooldown <= 0){orientation = 1;}
-    image(player[orientation],posOnMap[0], posOnMap[1]);
+    
+    if(orientation != 3){
+      image(player[orientation],posOnMap[0], posOnMap[1]);
+    }else{
+      image(player[orientation],posOnMap[0]-40, posOnMap[1]);
+    }
     fill(255);
     
   }
@@ -160,14 +165,27 @@ class Player{
   }
   
   void attack(){
-   float pX = enemy[0].getX();
-   float pY = enemy[0].getY();
    
    if(veloc.x > 0){
     orientation = 2;
     hitCooldown = 25;
-    if(pX > posOnMap[0] &&  pX < posOnMap[0]+150 && pY > posOnMap[1] && pY < posOnMap[1]+plHeight){
-       enemy[0].getDamage(damage);
+    for(int i = 0; i<=counterEnemys;i++){
+     float pX = enemy[i].getX();
+     float pY = enemy[i].getY();
+      if(pX > posOnMap[0] &&  pX < posOnMap[0]+150 && pY > posOnMap[1] && pY < posOnMap[1]+plHeight){
+         enemy[i].getDamage(damage);
+      }
+    }
+     
+   }else if(veloc.x < 0){
+    orientation = 3;
+    hitCooldown = 25;
+    for(int i = 0; i<=counterEnemys;i++){
+     float pX = enemy[i].getX();
+     float pY = enemy[i].getY();
+      if(pX < posOnMap[0] &&  pX > posOnMap[0]-150 && pY > posOnMap[1] && pY < posOnMap[1]+plHeight){
+         enemy[i].getDamage(damage);
+      }
     }
      
    }
