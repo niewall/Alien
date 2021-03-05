@@ -1,11 +1,12 @@
+
 float lastTime = 0;
 float delta = 0;
 Blocks[] block;
 Enemy[] enemy;
 int counterEnemys = -1;
- Player blob;
-
+Player blob;
 int screen = 0;
+String currentLevel;
 
 static final String RENDER = FX2D; //P3D oder JAVA2D FX2D
 
@@ -16,9 +17,11 @@ float verschiebungMapY = 0;
 void setup(){
   size(1280,720,RENDER);
   frameRate(90);
+  soundSetup();
   surface.setResizable(true);
   playerOffsetY = height/2+200;
   loadImages();
+  sound(true);
   block = new Blocks[8704];
   enemy = new Enemy[50];
   blob = new Player();
@@ -77,6 +80,20 @@ void run(){
   
   hud();
 }
+
+void gameOver(){
+  background(0);
+  textSize(50);
+  text("GAME OVER",width/2,height/10);
+  sound[5].play();
+  blob.resetKoor();
+  verschiebungMapX = 0;
+  verschiebungMapY = 0;
+  createBlocks(currentLevel);
+  
+}
+
+
 
 void displayBackground(){
   

@@ -10,27 +10,26 @@ void levelMenu(){
   rect(width/9*1,height/3, width/9,height/3);
   if(overRect(width/9*1,height/3, width/9,height/3) && mousePressed){
     createBlocks("level1");
+    sound[4].play();
     screen = 2;
   }
   rect(width/9*3,height/3, width/9,height/3);
   if(overRect(width/9*3,height/3, width/9,height/3) && mousePressed){
     createBlocks("level2");
+    sound[4].play();
     screen = 2;
   }
   rect(width/9*5,height/3, width/9,height/3);
   if(overRect(width/9*5,height/3, width/9,height/3) && mousePressed){
     createBlocks("level3New");
+    sound[4].play();
     screen = 2;
   }
   rect(width/9*7,height/3, width/9,height/3);
   if(overRect(width/9*7,height/3, width/9,height/3) && mousePressed){
     createBlocks("level4");
+    sound[4].play();
     screen = 2;
-  }
-  
-  rect(width/9*3,height/3*2+100,width/9*3,height/8);
-  if(overRect(width/9*3,height/3*2+100,width/9*3,height/8) && mousePressed){
-    createBlocks("level5");
   }
 
 }

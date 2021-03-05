@@ -20,6 +20,7 @@ void hud(){
 }
 
 void addToScore(int pAdd){
-    score = score + pAdd;   
+  sound[8].play();
+  score = score + pAdd;   
 
 }

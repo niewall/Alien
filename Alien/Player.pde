@@ -76,6 +76,11 @@ class Player{
     veloc.x = veloc.x*0.92;
     
     if(hitCooldown>0){hitCooldown--;}
+    
+    if(health <= 0 || posOnMap[1] > 2000){
+     gameOver(); 
+    }
+    
     //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
     //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
     //println(veloc.x);
@@ -111,6 +116,7 @@ class Player{
   }
       
     if(pDirection == 'j' && onGround == true){
+      sound[3].play();
       veloc.y = -sprungkraft;}
     
   }
@@ -161,7 +167,8 @@ class Player{
   }
   
   void getDamage(int pDamage){
-   health -= pDamage; 
+    sound[1].play();
+    health -= pDamage; 
   }
   
   void attack(){
@@ -190,6 +197,23 @@ class Player{
      
    }
    
+  }
+  
+  void resetKoor(){
+  posOnMap[0] = width/2;
+  posOnMap[1] = height*1.2;
+  
+  orientation = 0;
+  float gravity = 10;
+  counterLaufen[0] = 0;
+  counterLaufen[1] = 0;
+  hitCooldown = 0;
+  jump = true;
+  collitionStatusY = 0;
+  collitionStatusX = 0;
+  onGround = false;
+  stopMovement = 0;
+  health = 100;
   }
   
   void setGround(int pGroundY){

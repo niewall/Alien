@@ -8,6 +8,7 @@ class Enemy{
   float speed = 10;
   int direction = 1;
   PImage imageEnemy;
+  int counter = 0;
   
   Enemy(int pX, int pY, int pDamage, String pImage){
     x = pX*eSize;
@@ -19,6 +20,8 @@ class Enemy{
   void display(){
     
     if(health > 0){
+    if(counter > 0){
+      counter--;}
     move();
     hit();
     image(imageEnemy,x,y);
@@ -48,8 +51,9 @@ class Enemy{
     float playerX = blob.getX();
     float playerY = blob.getY();
     
-    if(playerX > x-eSize && playerX < x+eSize && playerY+120 > y && playerY < y){
+    if(playerX > x-eSize && playerX < x+eSize && playerY+120 > y && playerY < y && counter <= 0){
         blob.getDamage(damage);
+        counter = 100;
     }
     
   }
@@ -78,7 +82,9 @@ class Enemy{
   }
   
   void getDamage(int pDamage){
-    health -= pDamage;
+    if(damage >= 0){
+    sound[7].play();
+    health -= pDamage;}
   }
   
   float getX(){

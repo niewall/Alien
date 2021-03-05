@@ -34,7 +34,7 @@ void setMovement(int k, boolean b) {
     moveKeys[1] = b;
     break;
   case 'S':
-    moveKeys[2] = b;
+    //moveKeys[2] = b;
     break;
   case 'D':
     moveKeys[3] = b;
@@ -52,7 +52,7 @@ void setMovement(int k, boolean b) {
     moveKeys[1] = b;
     break;
   case 's':
-    moveKeys[2] = b;
+    //moveKeys[2] = b;
     break;
   case 'd':
     moveKeys[3] = b;

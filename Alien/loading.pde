@@ -4,6 +4,7 @@ JSONArray blockData;
 
 
 
+
 void loadRest(){
   background = loadImage("background.png");
   //background.resize(15360, 0);
@@ -16,6 +17,7 @@ void loadRest(){
 
 void createBlocks(String world){
     byte blockBytes[] = loadBytes(world+".dat"); 
+    currentLevel = world;
     int blockNr;
     byte data[] = {0,0};
     int counter = 0;
