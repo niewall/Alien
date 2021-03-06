@@ -1,4 +1,3 @@
-
 float lastTime = 0;
 float delta = 0;
 Blocks[] block;
@@ -21,6 +20,7 @@ void setup(){
   surface.setResizable(true);
   playerOffsetY = height/2+200;
   loadImages();
+  loadProgress();
   sound(true);
   block = new Blocks[8704];
   enemy = new Enemy[50];

@@ -1,8 +1,8 @@
 PImage[] player = new PImage[4];
 PImage background;
 JSONArray blockData;
-
-
+JSONArray progressData;
+LvlData[] lvlData = new LvlData[4];
 
 
 void loadRest(){
@@ -56,6 +56,20 @@ void createBlocks(String world){
     }
     }
     
+}
+
+void loadProgress(){
+  progressData = loadJSONArray("progress.json");
+  
+  for(int i = 0; i<4;i++){
+
+    JSONObject lvlValues = progressData.getJSONObject(i);
+        
+    boolean unlocked = lvlValues.getBoolean("unlocked");
+    int pScore = lvlValues.getInt("score");
+    boolean[] archivments = {lvlValues.getBoolean("archivment1"),lvlValues.getBoolean("archivment2"),lvlValues.getBoolean("archivment3")};
+    lvlData[i] = new LvlData(i,unlocked,pScore,archivments);
+  }
 }
 
 int bytesToInt(byte[] pData){

@@ -1,3 +1,5 @@
+
+
 class Player{
   
   int plWidth = 60;
@@ -41,7 +43,7 @@ class Player{
   }
   
   void update(){
-    if(posOnMap[0] > width/2+100){  //Check for BorderLeft
+    if(posOnMap[0] > width/2){  //Check for BorderLeft
     verschiebungMapX = refposOnMap[0]-posOnMap[0];}
     if(posOnMap[1] < 1500){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
@@ -81,8 +83,8 @@ class Player{
      gameOver(); 
     }
     
-    //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
-    //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
+    println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
+    println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
     //println(veloc.x);
     //println(counterLaufen[0]);
   }

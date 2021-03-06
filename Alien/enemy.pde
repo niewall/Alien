@@ -8,12 +8,14 @@ class Enemy{
   float speed = 10;
   int direction = 1;
   PImage imageEnemy;
+  Animation enemyAn;
   int counter = 0;
   
   Enemy(int pX, int pY, int pDamage, String pImage){
     x = pX*eSize;
     y = pY*eSize;
     damage = pDamage;
+    enemyAn = new Animation("gegner/Gegner-",0.05,11);
     imageEnemy = loadImage(pImage);
   }
   
@@ -24,7 +26,7 @@ class Enemy{
       counter--;}
     move();
     hit();
-    image(imageEnemy,x,y);
+    enemyAn.display(x,y);
     }
   }
   
@@ -42,8 +44,8 @@ class Enemy{
     }else if(direction == 1){
      x -= speed*delta; 
     }
-    println(pCollition);
-    println(x);
+    //println(pCollition);
+    //println(x);
 
   }
   
@@ -82,7 +84,7 @@ class Enemy{
   }
   
   void getDamage(int pDamage){
-    if(damage >= 0){
+    if(health >= 0){
     sound[7].play();
     health -= pDamage;}
   }
