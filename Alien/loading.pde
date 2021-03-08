@@ -2,6 +2,7 @@ PImage[] player = new PImage[4];
 PImage background;
 JSONArray blockData;
 JSONArray progressData;
+JSONArray pArray;
 LvlData[] lvlData = new LvlData[4];
 
 
@@ -40,14 +41,14 @@ void createBlocks(String world){
           if(pCollect){
             pCollectID = blockDat.getString("collectID");
           }
-          block[counter/2] = new Blocks(i,ii/2,blockNr,pSolid,pCollect,pCollectID,pDamage);  //The Block gets the position and value for solid
+          block[i][ii/2] = new Blocks(i,ii/2,blockNr,pSolid,pCollect,pCollectID,pDamage);  //The Block gets the position and value for solid
         }else if(blockDat.getBoolean("enemy")== true){
           counterEnemys++;
           String pImage = blockDat.getString("image");
           int pDamage = blockDat.getInt("damage");
           enemy[counterEnemy] = new Enemy(i,ii/2,pDamage,pImage);
           counterEnemy++;
-          block[counter/2] = new Blocks(i,ii/2,0,false,false,"",0);
+          block[i][ii/2] = new Blocks(i,ii/2,0,false,false,"",0);
       }
         
         counter = counter +2;
@@ -70,6 +71,29 @@ void loadProgress(){
     boolean[] archivments = {lvlValues.getBoolean("archivment1"),lvlValues.getBoolean("archivment2"),lvlValues.getBoolean("archivment3")};
     lvlData[i] = new LvlData(i,unlocked,pScore,archivments);
   }
+}
+
+void saveProgress(){
+
+  pArray = new JSONArray();
+  
+  for(int i = 0; i<4;i++){
+
+    JSONObject pSaveData = new JSONObject();
+    
+    pSaveData.setInt("id", i);
+    pSaveData.setBoolean("unlocked", lvlData[i].getUnlockStatus());
+    pSaveData.setInt("score", lvlData[i].getScore());
+    pSaveData.setBoolean("archivment1", lvlData[i].archivments[0]);
+    pSaveData.setBoolean("archivment2", lvlData[i].archivments[1]);
+    pSaveData.setBoolean("archivment3", lvlData[i].archivments[2]);
+  
+    pArray.setJSONObject(i, pSaveData);
+  }
+  
+  saveJSONArray(pArray,"data/progress.json");
+  
+  
 }
 
 int bytesToInt(byte[] pData){

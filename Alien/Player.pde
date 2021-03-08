@@ -83,8 +83,15 @@ class Player{
      gameOver(); 
     }
     
-    println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
-    println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
+    if(posOnMap[1] > 1900){
+     gameOver(); 
+    }
+    if(posOnMap[0] < 41){
+     posOnMap[0] = 41;
+    }
+    
+    //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
+    //println("||  verX:" + (verschiebungMapX) + " - " + "verY:" + (verschiebungMapY));
     //println(veloc.x);
     //println(counterLaufen[0]);
   }
@@ -125,9 +132,10 @@ class Player{
   
   int collisionY(){
     int result = 0;
-    for(int i = (int(posOnMap[0]+plWidth/2)/60)*34; i< (int(posOnMap[0]+plWidth*1.5)/60)*34;i++){  //Fuer drunter oder drueber:
+    int px = int((posOnMap[0])/60+0.5);
+    for(int i = int(posOnMap[1]/60); i< int(posOnMap[1]/60)+3;i++){  //Fuer drunter oder drueber:
       
-     result = block[i].doesCollide(posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[px][i].doesCollide(posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
@@ -137,17 +145,17 @@ class Player{
 
   int collisionX(){
     int result = 0;
-
-    for(int i = (int(posOnMap[0]+plWidth*1.5)/60)*34; i< (int(posOnMap[0]+plWidth*2.5)/60)*34;i++){ //Fuer daneben rechts
+    int pxR = int(posOnMap[0]/60+0.5)+1;
+    for(int i = int(posOnMap[1]/60)-1; i< int(posOnMap[1]/60)+2;i++){ //Fuer daneben rechts
       
-     result = block[i].doesTouch('r',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[pxR][i].doesTouch('r',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
-    
-    for(int i = (int(posOnMap[0]-plWidth/2)/60)*34; i< (int(posOnMap[0]+plWidth/2)/60)*34;i++){ //Fuer daneben links
+    int pxL = int(posOnMap[0]/60+0.5)-1;
+    for(int i = int(posOnMap[1]/60); i< int(posOnMap[1]/60)+2;i++){ //Fuer daneben links
       
-     result = block[i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[pxL][i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}

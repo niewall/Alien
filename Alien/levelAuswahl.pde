@@ -13,6 +13,7 @@ void levelMenu(){
   text(lvlData[0].getScore(),width/9+(width/9/2),height/3+height/3+50);
   if(overRect(width/9*1,height/3, width/9,height/3) && mousePressed && lvlData[0].getUnlockStatus()== true){
     createBlocks("level1");
+    currentLvlID = 0;
     sound[4].play();
     screen = 2;
   }
@@ -22,6 +23,7 @@ void levelMenu(){
   text(lvlData[1].getScore(),width/9*3+(width/9/2),height/3+height/3+50);
   if(overRect(width/9*3,height/3, width/9,height/3) && mousePressed && lvlData[1].getUnlockStatus()== true){
     createBlocks("level2");
+    currentLvlID = 1;
     sound[4].play();
     screen = 2;
   }
@@ -31,6 +33,7 @@ void levelMenu(){
   text(lvlData[2].getScore(),width/9*5+(width/9/2),height/3+height/3+50);
   if(overRect(width/9*5,height/3, width/9,height/3) && mousePressed && lvlData[2].getUnlockStatus()== true){
     createBlocks("level3New");
+    currentLvlID = 2;
     sound[4].play();
     screen = 2;
   }
@@ -40,6 +43,7 @@ void levelMenu(){
   text(lvlData[3].getScore(),width/9*7+(width/9/2),height/3+height/3+50);
   if(overRect(width/9*7,height/3, width/9,height/3) && mousePressed && lvlData[3].getUnlockStatus()== true){
     createBlocks("level4");
+    currentLvlID = 3;
     sound[4].play();
     screen = 2;
   }
@@ -76,6 +80,16 @@ class LvlData{
   
   int getScore(){
     
-   return score; 
+   return lvlscore; 
+  }
+  
+  void setScore(int pScore){
+   if(pScore > lvlscore){
+    lvlscore = pScore; 
+   }
+  }
+  
+  void lvlUnlock(){
+   unlocked = true; 
   }
 }

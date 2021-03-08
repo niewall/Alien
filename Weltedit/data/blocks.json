@@ -63,16 +63,17 @@
     "damage":30
   },
   {
-    "id":9,
-    "image":"coin.png",
+    "id": 9,
+    "image": "sand.png",
     "solid": false,
-    "collectable":true,
-    "damage":0
+    "collectable": true,
+    "collectID": "ziel",
+    "damage": 0
   },
   {
-    "id":11,
-    "image":"blank.png",
-    "solid": true,
+    "id":10,
+    "image":"sand.png",
+    "solid": false,
     "collectable":false,
     "damage":0
   },
@@ -96,7 +97,7 @@
     "solid": true,
     "collectable":false,
     "damage":0
-  },
+  }
 
 
 

@@ -9,12 +9,16 @@ class Blocks{
   int blockNr;
   int x;
   int y;
+  boolean zielBlock = false;
   
   Blocks(int pX, int pY,int pBlockNr,boolean pSolid, boolean pCollectable,String pCollectID, int pDamage){
    solid = pSolid;
    blockNr = pBlockNr;
    collectable = pCollectable;
    collectID = pCollectID;
+   if(collectID.equals("ziel")){
+     zielBlock = true;
+   }
    damage = pDamage;
    x = pX*bSize;
    y = pY*bSize;
@@ -42,9 +46,11 @@ class Blocks{
       }
     }
     if(collectable && visible){
-      if(y>pY1 && y < pY2){
-      visible = false;
-      addToScore(5);
+      if(y>pY1 && y < pY2 && !zielBlock){
+        visible = false;
+        addToScore(5);
+      }else if(y>pY1 && y < pY2 && zielBlock){
+        gameCompleted();
       }
     }
     return 0;  
@@ -64,7 +70,7 @@ class Blocks{
       if(y <= pY2-10 && y >= pY1 && pX1+60 >= x){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
         //print("HITRechts");
-       return 4; 
+       return 4;
         
       }
      }

@@ -63,23 +63,23 @@ class Enemy{
   int collisionX(){
     
     int result = 0;
+    int py = int(y/60);
 
     if(x<10){return 3;}
     
-
-    for(int i = (int(x+eSize*1.5)/60)*34; i< (int(x+eSize*2.5)/60)*34;i++){ //Fuer daneben rechts
+    int pxR = int(x/60+0.5)+1;    
       
-     result = block[i].doesTouch('r',x,x+eSize, y, y+eSize);
+     result = block[pxR][py].doesTouch('r',x,x+eSize, y, y+eSize);
      if(result >0){
        return result;
-    }}
+    }
     
-    for(int i = (int(x-eSize/2)/60)*34; i< (int(x+eSize/2)/60)*34;i++){ //Fuer daneben links
-      
-     result = block[i].doesTouch('l',x,x+eSize, y, y+eSize);
+    int pxL = int(x/60+0.5)-1; 
+    
+     result = block[pxL][py].doesTouch('l',x,x+eSize, y, y+eSize);
      if(result >0){
        return result;
-    }}
+    }
     return 0;
   }
   
