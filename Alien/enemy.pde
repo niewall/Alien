@@ -76,10 +76,11 @@ class Enemy{
     
     int pxL = int(x/60+0.5)-1; 
     
+    if(pxL > 0){
      result = block[pxL][py].doesTouch('l',x,x+eSize, y, y+eSize);
      if(result >0){
        return result;
-    }
+    }}
     return 0;
   }
   

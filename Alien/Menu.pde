@@ -18,8 +18,10 @@ void menu(){
     screen = 1;
   }
   if(overRect(Math.round(width/2-width/9.48), height/2-height/24, Math.round(width/4.92), Math.round(height/14.4)) && mousePressed){ //Tutorial
+    createBlocks("levelTutorial");
+    currentLvlID = -1;
     sound[4].play();
-    //screen = 1;
+    screen = 2;
   }
   if(overRect(Math.round(width/2-width/12.8), height/2+height/18 , Math.round(width/6.74), Math.round(height/14.4)) && mousePressed){ //Option
     sound[4].play();

@@ -36,7 +36,7 @@ class Blocks{
     if(solid){
       //print("Y:" + y + " - " + "pY2:" +pY2 + " || ");
       if(y+bSize >= pY1 && y < pY1){
-        //print("HEEE");
+        print("HIT TOP " + pY1);
         return 2;
       }
       if(y <= pY2 && y >= pY1){
@@ -59,9 +59,9 @@ class Blocks{
   int doesTouch(char pSide, float pX1,float pX2, float pY1, float pY2){
    if(solid){
      if(pSide == 'l'){
-      if(y <= pY2-10 && y >= pY1 && pX1 <= x+bSize){
+      if(y <= pY2 && y >= pY1 && pX1 <= x+bSize){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        //print("HITLinks");
+        print("HITLinks");
        return 3; 
         
       }

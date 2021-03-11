@@ -30,6 +30,8 @@ class Player{
   
   void display(){
     update();
+    rectMode(CORNER);
+    //rect(posOnMap[0], posOnMap[1]+5,plWidth, plHeight);
     
     if(veloc.x > 0 && hitCooldown <= 0){orientation = 0;}else if(veloc.x < 0 && hitCooldown <= 0){orientation = 1;}
     
@@ -45,8 +47,19 @@ class Player{
   void update(){
     if(posOnMap[0] > width/2){  //Check for BorderLeft
     verschiebungMapX = refposOnMap[0]-posOnMap[0];}
-    if(posOnMap[1] < 1500){  // Check for BorderBottom
+    if(posOnMap[1] < 1500&& posOnMap[1] > 300){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
+    
+    //&& posOnMap[1] > 400
+    
+    if(verschiebungMapX >0){
+      verschiebungMapX = 0;
+      print("MapX > 0");
+    }
+    if(verschiebungMapY >0){
+      //verschiebungMapY = 0;
+      print("MapY > 0");
+    }
     
     posOnMap[0] += veloc.x *delta;
     posOnMap[1] += veloc.y *delta;
@@ -85,6 +98,9 @@ class Player{
     
     if(posOnMap[1] > 1900){
      gameOver(); 
+    }
+    if(posOnMap[1] < 100){
+    veloc.y = 5;
     }
     if(posOnMap[0] < 41){
      posOnMap[0] = 41;
@@ -135,7 +151,7 @@ class Player{
     int px = int((posOnMap[0])/60+0.5);
     for(int i = int(posOnMap[1]/60); i< int(posOnMap[1]/60)+3;i++){  //Fuer drunter oder drueber:
       
-     result = block[px][i].doesCollide(posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[px][i].doesCollide(posOnMap[0],posOnMap[0]+plWidth, posOnMap[1]+5, posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}
@@ -155,7 +171,7 @@ class Player{
     int pxL = int(posOnMap[0]/60+0.5)-1;
     for(int i = int(posOnMap[1]/60); i< int(posOnMap[1]/60)+2;i++){ //Fuer daneben links
       
-     result = block[pxL][i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[pxL][i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1]+5, posOnMap[1]+plHeight);
      if(result >0){
        return result;
     }}

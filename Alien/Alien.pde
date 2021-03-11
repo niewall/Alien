@@ -69,7 +69,7 @@ void run(){
     enemy[i].display();
   }
   for(int i = int(-verschiebungMapX/60); i< -verschiebungMapX/60+32;i++){  
-    for(int ii = int(-verschiebungMapY/60); ii<34;ii++){
+    for(int ii = 0; ii<34;ii++){
     // Weniger Auslastung, wenn man nur den Bereich Rendert,
     // den man sieht. Z.B. nur Bereich von x1 zu x2. 
     // Rechnung i = (verschiebungX/60) ; i Obergrenze = (verschiebungX/60)+33
@@ -99,11 +99,11 @@ void gameOver(){
 }
 
 void gameCompleted(){
-   
-  lvlData[currentLvlID].setScore(score);
-  if(currentLvlID+1 <4){
-  lvlData[currentLvlID+1].lvlUnlock();
-  print("Unlocked LV: " + currentLvlID+1);
+  if(currentLvlID >= 0){
+    lvlData[currentLvlID].setScore(score);
+    if(currentLvlID+1 <4){
+    lvlData[currentLvlID+1].lvlUnlock();
+    }
   }
   
   saveProgress();
