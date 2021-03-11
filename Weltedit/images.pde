@@ -1,5 +1,5 @@
 PImage[] blockIm = new PImage[255];
-int blockAmount = 10;
+int blockAmount = 41;
 JSONArray blockData;
 
 

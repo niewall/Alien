@@ -8,12 +8,12 @@
     "unlocked": true
   },
   {
-    "score": 50,
+    "score": 0,
     "archivment3": false,
     "archivment2": false,
     "archivment1": false,
     "id": 1,
-    "unlocked": true
+    "unlocked": false
   },
   {
     "score": 0,
@@ -21,7 +21,7 @@
     "archivment2": false,
     "archivment1": false,
     "id": 2,
-    "unlocked": true
+    "unlocked": false
   },
   {
     "score": 0,
@@ -29,6 +29,6 @@
     "archivment2": false,
     "archivment1": false,
     "id": 3,
-    "unlocked": true
+    "unlocked": false
   }
 ]

@@ -47,11 +47,9 @@ class Player{
   void update(){
     if(posOnMap[0] > width/2){  //Check for BorderLeft
     verschiebungMapX = refposOnMap[0]-posOnMap[0];}
-    if(posOnMap[1] < 1500&& posOnMap[1] > 300){  // Check for BorderBottom
+    if(posOnMap[1] < 1550&& posOnMap[1] > 300){  // Check for BorderBottom
     verschiebungMapY = refposOnMap[1]-posOnMap[1];}
-    
-    //&& posOnMap[1] > 400
-    
+        
     if(verschiebungMapX >0){
       verschiebungMapX = 0;
       print("MapX > 0");
@@ -74,7 +72,7 @@ class Player{
         veloc.y = 0;
         onGround = true;
     }else if(collitionStatusY == 2){ //Hit Celling
-        veloc.y = 2;
+        veloc.y = 4;
     }else{
       stopMovement = 0;
       veloc.y += gravity*delta;
@@ -104,6 +102,10 @@ class Player{
     }
     if(posOnMap[0] < 41){
      posOnMap[0] = 41;
+    }
+    if((lastTime-lvlStartTime) > 5000){
+      score = score - 1;
+      lvlStartTime = lastTime;
     }
     
     //println("X:" + (posOnMap[0]) + " - " + "Y:" + (posOnMap[1]));
@@ -155,6 +157,7 @@ class Player{
      if(result >0){
        return result;
     }}
+
  
     return 0;
   }
@@ -193,7 +196,7 @@ class Player{
   }
   
   void getDamage(int pDamage){
-    sound[1].play();
+    if(pDamage > 0){sound[1].play();}
     health -= pDamage; 
   }
   

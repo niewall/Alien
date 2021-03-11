@@ -1,4 +1,5 @@
 float lastTime = 0;
+float lvlStartTime = 0;
 float delta = 0;
 Blocks[][] block;
 Enemy[] enemy;

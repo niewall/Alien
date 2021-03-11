@@ -1,5 +1,3 @@
-
-
 void isKeyPressed() {
     if (moveKeys[0]) {
       blob.move('j');

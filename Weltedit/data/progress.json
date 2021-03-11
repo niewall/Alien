@@ -1,0 +1,34 @@
+[
+  {
+    "score": 0,
+    "archivment3": false,
+    "archivment2": false,
+    "archivment1": false,
+    "id": 0,
+    "unlocked": true
+  },
+  {
+    "score": 0,
+    "archivment3": false,
+    "archivment2": false,
+    "archivment1": false,
+    "id": 1,
+    "unlocked": true
+  },
+  {
+    "score": 0,
+    "archivment3": false,
+    "archivment2": false,
+    "archivment1": false,
+    "id": 2,
+    "unlocked": false
+  },
+  {
+    "score": 0,
+    "archivment3": false,
+    "archivment2": false,
+    "archivment1": false,
+    "id": 3,
+    "unlocked": false
+  }
+]

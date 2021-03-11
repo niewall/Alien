@@ -23,6 +23,7 @@ void createBlocks(String world){
     byte data[] = {0,0};
     int counter = 0;
     int counterEnemy = 0;
+    lvlStartTime = lastTime;
     counterEnemys = -1;
     for(int i = 0; i < 256; i++){
       for(int ii = 0; ii < 68; ii++){
@@ -30,7 +31,7 @@ void createBlocks(String world){
         data[1] = blockBytes[counter+1];
         blockNr = bytesToInt(data);
         
-        //if(blockNr > blockAmount){blockNr = 0;}
+        if(blockNr > blockAmount){blockNr = 0;}
         JSONObject blockDat = blockData.getJSONObject(blockNr);
         
         if(blockDat.isNull("enemy")){
