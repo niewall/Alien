@@ -196,8 +196,10 @@ class Player{
   }
   
   void getDamage(int pDamage){
-    if(pDamage > 0){sound[1].play();}
-    health -= pDamage; 
+    if(pDamage > 0){
+      sound[1].play();
+      health -= pDamage; 
+    }
   }
   
   void attack(){
