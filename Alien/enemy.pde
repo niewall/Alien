@@ -69,7 +69,7 @@ class Enemy{
     
     int pxR = int(x/60+0.5)+1;    
       
-     result = block[pxR][py].doesTouch('r',x,x+eSize, y, y+eSize);
+     result = block[pxR][py].doesTouch('r',x,x+eSize, y, y+eSize, 'e');
      if(result >0){
        return result;
     }
@@ -77,7 +77,7 @@ class Enemy{
     int pxL = int(x/60+0.5)-1; 
     
     if(pxL > 0){
-     result = block[pxL][py].doesTouch('l',x,x+eSize, y, y+eSize);
+     result = block[pxL][py].doesTouch('l',x,x+eSize, y, y+eSize, 'e');
      if(result >0){
        return result;
     }}
@@ -86,8 +86,12 @@ class Enemy{
   
   void getDamage(int pDamage){
     if(health >= 0){
-    sound[7].play();
-    health -= pDamage;}
+      sound[7].play();
+      health -= pDamage;
+      if(health <= 0){
+        addToScore(5);
+      }
+    }
   }
   
   float getX(){

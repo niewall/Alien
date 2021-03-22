@@ -167,14 +167,14 @@ class Player{
     int pxR = int(posOnMap[0]/60+0.5)+1;
     for(int i = int(posOnMap[1]/60)-1; i< int(posOnMap[1]/60)+2;i++){ //Fuer daneben rechts
       
-     result = block[pxR][i].doesTouch('r',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight);
+     result = block[pxR][i].doesTouch('r',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1], posOnMap[1]+plHeight, 'p');
      if(result >0){
        return result;
     }}
     int pxL = int(posOnMap[0]/60+0.5)-1;
     for(int i = int(posOnMap[1]/60); i< int(posOnMap[1]/60)+2;i++){ //Fuer daneben links
       
-     result = block[pxL][i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1]+5, posOnMap[1]+plHeight);
+     result = block[pxL][i].doesTouch('l',posOnMap[0],posOnMap[0]+plWidth, posOnMap[1]+5, posOnMap[1]+plHeight, 'p');
      if(result >0){
        return result;
     }}
@@ -199,6 +199,7 @@ class Player{
     if(pDamage > 0){
       sound[1].play();
       health -= pDamage; 
+      println("Damage: " + pDamage + " || Xplayer: " + posOnMap[0]);
     }
   }
   

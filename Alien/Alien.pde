@@ -61,7 +61,7 @@ void draw(){
 void run(){
   background(98,198,223);
   displayBackground();
-  pushMatrix();  
+  pushMatrix();
   translate(verschiebungMapX, verschiebungMapY-playerOffsetY);
   //print("XMap:" + (verschiebungMapX) + " - " + "YMap:" + (verschiebungMapY-playerOffsetY) + "  ||  ");
 

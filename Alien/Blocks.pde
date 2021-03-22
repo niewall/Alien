@@ -36,7 +36,7 @@ class Blocks{
       //print("Y:" + y + " - " + "pY2:" +pY2 + " || ");
       if(y+bSize+5 > pY1 && y < pY1){
         blob.getDamage(damage);
-        print("HIT TOP " + pY1);
+        //print("HIT TOP " + pY1);
         return 2;
       }
       if(y <= pY2 && y >= pY1){
@@ -57,13 +57,15 @@ class Blocks{
     return 0;  
   }
   
-  int doesTouch(char pSide, float pX1,float pX2, float pY1, float pY2){
+  int doesTouch(char pSide, float pX1,float pX2, float pY1, float pY2, char entity){
    if(solid){
      if(pSide == 'l'){
-      if(y < pY2 && y+bSize-5 > pY1 && pX1 <= x+bSize){
+      if(y < pY2 && y+bSize-5 > pY1 && pX1 <= x+bSize  && pX1 > x){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        print("HITLinks");
-        blob.getDamage(damage);
+        //print("HITLinks");
+        if(entity == 'p'){
+          blob.getDamage(damage);
+        }
        return 3; 
         
       }
@@ -71,8 +73,10 @@ class Blocks{
      if(pSide == 'r'){
       if(y < pY2 && y+bSize-5 > pY1 && pX2 >= x){
         //print("X:" + x + " - " + "pX:" +pX1 + " || ");
-        print("HITRechts");
-        blob.getDamage(damage);
+        //print("HITRechts");
+        if(entity == 'p'){
+          blob.getDamage(damage);
+        }
        return 4;
         
       }
