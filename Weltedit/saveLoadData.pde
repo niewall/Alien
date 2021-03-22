@@ -66,6 +66,9 @@ void displayStats(){
   if(currentBlock < blockAmount){
     image(blockIm[currentBlock],1862,420);
   }
+  if(solid[currentBlock]){
+    text("fest",1860, 520);
+  }
 }
 
 void keyPressed() {

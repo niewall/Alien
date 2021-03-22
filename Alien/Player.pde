@@ -1,5 +1,3 @@
-
-
 class Player{
   
   int plWidth = 60;
@@ -52,11 +50,11 @@ class Player{
         
     if(verschiebungMapX >0){
       verschiebungMapX = 0;
-      print("MapX > 0");
+      //print("MapX > 0");
     }
     if(verschiebungMapY >0){
       //verschiebungMapY = 0;
-      print("MapY > 0");
+      //print("MapY > 0");
     }
     
     posOnMap[0] += veloc.x *delta;

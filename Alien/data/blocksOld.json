@@ -201,14 +201,14 @@
     "image": "Spikes.png",
     "solid": true,
     "collectable": false,
-    "damage": 10
+    "damage": 30
   },
   {
     "id": 29,
     "image": "Spikes2.png",
     "solid": true,
     "collectable": false,
-    "damage": 10
+    "damage": 30
   },
   {
     "id": 30,
@@ -268,88 +268,24 @@
   },
   {
     "id": 38,
-    "image": "Fenster1.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 39,
-    "image": "Fenster2.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 40,
-    "image": "Fenster3.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 41,
-    "image": "Fenster4.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 42,
-    "image": "LeereTod.png",
-    "solid": true,
-    "collectable": false,
-    "damage": 100
-  },
-  {
-    "id": 43,
-    "image": "Stern1.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 44,
-    "image": "Stern2.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 45,
-    "image": "Stern3.png",
-    "solid": false,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 46,
-    "image": "Crystal1.png",
-    "solid": false,
-    "collectable": true,
-    "collectID": "coin",
-    "damage": 0
-  },
-  {
-    "id": 47,
-    "image": "Boden12.png",
-    "solid": true,
-    "collectable": false,
-    "damage": 0
-  },
-  {
-    "id": 48,
-    "solid": false,
     "enemy": true,
     "image": "blobLeft.png",
     "damage": 30
   },
   {
-    "id": 49,
+    "id": 39,
     "image": "sand.png",
     "solid": false,
     "collectable": true,
     "collectID": "ziel",
+    "damage": 0
+  },
+  {
+    "id": 41,
+    "image": "coin.png",
+    "solid": false,
+    "collectable": true,
+    "collectID": "coin",
     "damage": 0
   }
 ]

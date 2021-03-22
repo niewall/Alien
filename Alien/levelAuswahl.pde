@@ -47,6 +47,7 @@ void levelMenu(){
     sound[4].play();
     screen = 2;
   }
+  backButton();
 
 }
 

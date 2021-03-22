@@ -1,6 +1,8 @@
 import processing.sound.*;
 boolean soundPlaying = false;
 SoundFile[] sound = new SoundFile[10];
+float vol = 1;
+
 
 void soundSetup(){
   sound[0] = new SoundFile(this, "titel.wav");
@@ -9,13 +11,11 @@ void soundSetup(){
   sound[3] = new SoundFile(this, "jump2.wav");
   sound[4] = new SoundFile(this, "click.wav");
   sound[5] = new SoundFile(this, "gameover.wav");
-  sound[6] = new SoundFile(this, "start.ogg");
+  sound[6] = new SoundFile(this, "sword.wav");
   sound[7] = new SoundFile(this, "sword.wav");
   sound[8] = new SoundFile(this, "coin.wav");
 
-  sound[1].amp(0.2);
-  sound[3].amp(0.4);
-  sound[0].amp(0.2);
+
 }
 
 void sound(boolean switchS) {

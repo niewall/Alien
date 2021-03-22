@@ -1,5 +1,5 @@
 PImage[] blockIm = new PImage[255];
-int blockAmount = 41;
+int blockAmount = 50;
 
 void loadImages(){
   

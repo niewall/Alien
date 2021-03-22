@@ -1,5 +1,7 @@
 PImage[] player = new PImage[4];
-PImage background;
+PImage background;PImage backgroundAudio;
+PImage audioImage;PImage audioImageOff;
+PImage arrow;
 JSONArray blockData;
 JSONArray progressData;
 JSONArray pArray;
@@ -8,6 +10,11 @@ LvlData[] lvlData = new LvlData[4];
 
 void loadRest(){
   background = loadImage("background.png");
+  backgroundAudio = loadImage("backgroundOption.png");
+  audioImage = loadImage("audio.png");
+  audioImageOff = loadImage("audioOFF.png");
+  arrow = loadImage("arrow.png");
+
   //background.resize(15360, 0);
   player[0] = loadImage("man.png");
   player[1] = loadImage("manl.png");

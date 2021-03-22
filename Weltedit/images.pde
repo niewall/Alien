@@ -1,5 +1,6 @@
 PImage[] blockIm = new PImage[255];
-int blockAmount = 41;
+boolean[] solid = new boolean[255];
+int blockAmount = 50;
 JSONArray blockData;
 
 
@@ -12,6 +13,7 @@ void loadImages(){
 
     int id = block.getInt("id");
     String image = block.getString("image");
+    solid[i] = block.getBoolean("solid");
     blockIm[i] = loadImage(image);
 
     println(id + ", " + image);

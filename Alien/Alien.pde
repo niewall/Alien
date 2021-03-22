@@ -8,6 +8,7 @@ Player blob;
 int screen = 0;
 String currentLevel;
 int currentLvlID;
+boolean buttonPressed = true;
 
 static final String RENDER = FX2D; //P3D oder JAVA2D FX2D
 
@@ -16,10 +17,10 @@ float verschiebungMapX = 0;
 float verschiebungMapY = 0;
 
 void setup(){
-  size(1280,720,RENDER);
+  size(1280,800,RENDER);
   frameRate(90);
   soundSetup();
-  surface.setResizable(true);
+  //surface.setResizable(true);
   playerOffsetY = height/2+200;
   loadImages();
   loadProgress();
@@ -50,8 +51,9 @@ void draw(){
   if(screen == 1){
   levelMenu();
   }
-  
-  
+  if(screen == 3){
+  optionen(); 
+  }
   if(screen == 2){
   run(); 
   }
@@ -114,6 +116,35 @@ void gameCompleted(){
   verschiebungMapX = 0;
   verschiebungMapY = 0;
   screen = 1;
+}
+
+void optionen(){
+  image(backgroundAudio,0,0,width,height);  
+  if(vol > 0){
+    image(audioImage,width/2-width/18,height/2-width/18, width/9,width/9);
+      }else{
+    image(audioImageOff,width/2-width/18,height/2-width/18, width/9,width/9);
+   }
+  imageMode(CENTER);
+  fill(0);
+  if(overRect(width/2-width/18,height/2-width/18, width/9,width/9) && mousePressed && buttonPressed == false){
+    if(vol > 0){
+        vol = 0;}else{
+        vol = 1; 
+      }
+    buttonPressed = true;
+  }
+  
+  if(buttonPressed && !mousePressed){
+   buttonPressed= false;
+  }
+
+  
+  for(int i = 0; i < 9; i++){
+  sound[i].amp(vol);
+  }
+  imageMode(CORNER);
+  backButton();
 }
 
 
